@@ -28,10 +28,13 @@ class VideoPlayerViewController: UIViewController {
 	deinit {
 		avPlayer.removeTimeObserver(timeObserver)
 		avPlayer.removeObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp")
+		NotificationCenter.default.removeObserver(self)
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		NotificationCenter.default.addObserver(self, selector: #selector(VideoPlayerViewController.itemDidFinishPlaying(_:)), name:NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
 
 		bufferSpinnerAlphaView.layer.cornerRadius = 10
 
@@ -89,6 +92,9 @@ class VideoPlayerViewController: UIViewController {
 		}
 	}
 
+	fileprivate func restartPlayer() {
+		playButton.setTitle("Play", for: .normal)
+	}
 }
 
 
@@ -140,6 +146,18 @@ private extension VideoPlayerViewController {
 		let videoDuration = CMTimeGetSeconds(avPlayer.currentItem!.duration)
 		let elapsedTime: Float64 = videoDuration * Float64(seekSlider.value)
 		updateTimeLabel(elapsedTime: elapsedTime, duration: videoDuration)
+	}
+}
+
+
+
+// MARK: Notifications
+
+extension VideoPlayerViewController {
+	func itemDidFinishPlaying(_ notification: Notification) {
+		DispatchQueue.main.async {
+			self.restartPlayer()
+		}
 	}
 }
 
