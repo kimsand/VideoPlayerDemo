@@ -22,19 +22,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBl-gQ-VcD" userLabel="Button Alpha View">
+                                <rect key="frame" x="0.0" y="634" width="375" height="33"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="P04-wy-0cM">
                                 <rect key="frame" x="16" y="634" width="343" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtI-xw-5Zm">
-                                        <rect key="frame" x="0.0" y="0.0" width="111" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="8Ui-4a-i4y"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Play"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GHe-qs-vQf"/>
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-l7-eYI">
-                                        <rect key="frame" x="125" y="0.0" width="158" height="34"/>
+                                        <rect key="frame" x="64" y="0.0" width="265" height="34"/>
+                                        <color key="tintColor" red="0.0" green="0.7843137255" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="sliderBeganTrackingWithSlider:" destination="BYZ-38-t0r" eventType="touchDown" id="fbL-HP-D0V"/>
                                             <action selector="sliderEndedTrackingWithSlider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ErO-7S-GEU"/>
@@ -43,18 +53,22 @@
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ca-tS-vhz">
-                                        <rect key="frame" x="297" y="0.0" width="46" height="33"/>
+                                        <rect key="frame" x="343" y="0.0" width="0.0" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="P04-wy-0cM" secondAttribute="trailing" id="Ss4-5g-L4U"/>
+                            <constraint firstItem="iBl-gQ-VcD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TeP-FN-jzP"/>
+                            <constraint firstItem="iBl-gQ-VcD" firstAttribute="top" secondItem="P04-wy-0cM" secondAttribute="top" id="UuZ-h7-gUq"/>
+                            <constraint firstAttribute="trailing" secondItem="iBl-gQ-VcD" secondAttribute="trailing" id="Uvg-Ko-dNA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P04-wy-0cM" secondAttribute="bottom" id="VyS-o1-jJh"/>
+                            <constraint firstItem="iBl-gQ-VcD" firstAttribute="bottom" secondItem="P04-wy-0cM" secondAttribute="bottom" id="o5K-TI-GC4"/>
                             <constraint firstItem="P04-wy-0cM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sQi-81-KBm"/>
                         </constraints>
                     </view>
