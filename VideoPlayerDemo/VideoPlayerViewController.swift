@@ -13,6 +13,7 @@ class VideoPlayerViewController: UIViewController {
 	@IBOutlet var buttonStackView: UIStackView!
 	@IBOutlet var timeRemainingLabel: UILabel!
 	@IBOutlet var seekSlider: UISlider!
+	@IBOutlet var playButton: UIButton!
 
 	let avPlayer = AVPlayer()
 	var avPlayerLayer: AVPlayerLayer!
@@ -59,8 +60,10 @@ class VideoPlayerViewController: UIViewController {
 
 		if videoIsPlaying {
 			avPlayer.pause()
+			playButton.setTitle("Play", for: .normal)
 		} else {
 			avPlayer.play()
+			playButton.setTitle("Pause", for: .normal)
 		}
 	}
 

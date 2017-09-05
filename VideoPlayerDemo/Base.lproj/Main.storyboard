@@ -60,6 +60,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonStackView" destination="P04-wy-0cM" id="9uq-hV-nUg"/>
+                        <outlet property="playButton" destination="dtI-xw-5Zm" id="pAh-CK-d9M"/>
                         <outlet property="seekSlider" destination="Prb-l7-eYI" id="oyJ-Su-MvH"/>
                         <outlet property="timeRemainingLabel" destination="5Ca-tS-vhz" id="baz-Xp-8AR"/>
                     </connections>
