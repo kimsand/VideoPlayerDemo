@@ -22,20 +22,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P04-wy-0cM">
-                                <rect key="frame" x="16" y="637" width="343" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="P04-wy-0cM">
+                                <rect key="frame" x="16" y="634" width="343" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtI-xw-5Zm">
-                                        <rect key="frame" x="0.0" y="0.0" width="225.5" height="30"/>
-                                        <state key="normal" title="Play/pause"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GHe-qs-vQf"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ca-tS-vhz">
-                                        <rect key="frame" x="225.5" y="0.0" width="117.5" height="30"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-l7-eYI">
+                                        <rect key="frame" x="125" y="0.0" width="158" height="34"/>
+                                        <connections>
+                                            <action selector="sliderBeganTrackingWithSlider:" destination="BYZ-38-t0r" eventType="touchDown" id="fbL-HP-D0V"/>
+                                            <action selector="sliderEndedTrackingWithSlider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ErO-7S-GEU"/>
+                                            <action selector="sliderEndedTrackingWithSlider:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="SMO-qH-Ayh"/>
+                                            <action selector="sliderValueChangedWithSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="ssy-nL-ef0"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ca-tS-vhz">
+                                        <rect key="frame" x="297" y="0.0" width="46" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -50,6 +60,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonStackView" destination="P04-wy-0cM" id="9uq-hV-nUg"/>
+                        <outlet property="seekSlider" destination="Prb-l7-eYI" id="oyJ-Su-MvH"/>
                         <outlet property="timeRemainingLabel" destination="5Ca-tS-vhz" id="baz-Xp-8AR"/>
                     </connections>
                 </viewController>
