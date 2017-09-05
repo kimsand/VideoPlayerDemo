@@ -26,12 +26,18 @@
                                 <rect key="frame" x="16" y="637" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtI-xw-5Zm">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="225.5" height="30"/>
                                         <state key="normal" title="Play/pause"/>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GHe-qs-vQf"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ca-tS-vhz">
+                                        <rect key="frame" x="225.5" y="0.0" width="117.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -44,6 +50,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonStackView" destination="P04-wy-0cM" id="9uq-hV-nUg"/>
+                        <outlet property="timeRemainingLabel" destination="5Ca-tS-vhz" id="baz-Xp-8AR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

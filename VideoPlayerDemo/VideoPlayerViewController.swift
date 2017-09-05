@@ -11,9 +11,16 @@ import AVFoundation
 
 class VideoPlayerViewController: UIViewController {
 	@IBOutlet var buttonStackView: UIStackView!
+	@IBOutlet var timeRemainingLabel: UILabel!
 
 	let avPlayer = AVPlayer()
 	var avPlayerLayer: AVPlayerLayer!
+
+	var timeObserver: Any!
+
+	deinit {
+		avPlayer.removeTimeObserver(timeObserver)
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +33,15 @@ class VideoPlayerViewController: UIViewController {
 		let url = NSURL(string: "http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8")
 		let playerItem = AVPlayerItem(url: url! as URL)
 		avPlayer.replaceCurrentItem(with: playerItem)
+
+		let timeInterval: CMTime = CMTimeMakeWithSeconds(1.0, 10)
+		timeObserver = avPlayer
+			.addPeriodicTimeObserver(forInterval: timeInterval,
+			                         queue: DispatchQueue.main) {
+										(elapsedTime: CMTime) -> Void in
+
+										self.observeTime(elapsedTime: elapsedTime)
+		}
 	}
 
 	override func viewWillLayoutSubviews() {
@@ -35,13 +51,26 @@ class VideoPlayerViewController: UIViewController {
 		avPlayerLayer.frame = view.bounds
 	}
 
-	func playVideo() {
+	fileprivate func playVideo() {
 		let videoIsPlaying = avPlayer.rate > 0
 
 		if videoIsPlaying {
 			avPlayer.pause()
 		} else {
 			avPlayer.play()
+		}
+	}
+
+	private func updateTimeLabel(elapsedTime: Float64, duration: Float64) {
+		let timeRemaining: Float64 = CMTimeGetSeconds(avPlayer.currentItem!.duration) - elapsedTime
+		timeRemainingLabel.text = String(format: "%02d:%02d", ((lround(timeRemaining) / 60) % 60), lround(timeRemaining) % 60)
+	}
+
+	private func observeTime(elapsedTime: CMTime) {
+		let duration = CMTimeGetSeconds(avPlayer.currentItem!.duration)
+		if duration.isFinite {
+			let elapsedTime = CMTimeGetSeconds(elapsedTime)
+			updateTimeLabel(elapsedTime: elapsedTime, duration: duration)
 		}
 	}
 }
