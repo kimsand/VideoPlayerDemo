@@ -14,6 +14,8 @@ class VideoPlayerViewController: UIViewController {
 	@IBOutlet var timeRemainingLabel: UILabel!
 	@IBOutlet var seekSlider: UISlider!
 	@IBOutlet var playButton: UIButton!
+	@IBOutlet var bufferSpinner: UIActivityIndicatorView!
+	@IBOutlet var bufferSpinnerAlphaView: UIView!
 
 	let avPlayer = AVPlayer()
 	var avPlayerLayer: AVPlayerLayer!
@@ -21,13 +23,17 @@ class VideoPlayerViewController: UIViewController {
 	var timeObserver: Any!
 
 	var playerRateBeforeSeek: Float = 0
+	var playbackLikelyToKeepUpContext = 0
 
 	deinit {
 		avPlayer.removeTimeObserver(timeObserver)
+		avPlayer.removeObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp")
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		bufferSpinnerAlphaView.layer.cornerRadius = 10
 
 		// An AVPlayerLayer is a CALayer instance to which the AVPlayer can
 		// direct its visual output. Without it, the user will see nothing.
@@ -46,6 +52,9 @@ class VideoPlayerViewController: UIViewController {
 
 										self.observeTime(elapsedTime: elapsedTime)
 		}
+
+		avPlayer.addObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp",
+		                     options: .new, context: &playbackLikelyToKeepUpContext)
 	}
 
 	override func viewWillLayoutSubviews() {
@@ -77,6 +86,25 @@ class VideoPlayerViewController: UIViewController {
 		if duration.isFinite {
 			let elapsedTime = CMTimeGetSeconds(elapsedTime)
 			updateTimeLabel(elapsedTime: elapsedTime, duration: duration)
+		}
+	}
+
+}
+
+
+
+// MARK: Observer
+
+extension VideoPlayerViewController {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if context == &playbackLikelyToKeepUpContext {
+			if avPlayer.currentItem!.isPlaybackLikelyToKeepUp {
+				bufferSpinner.stopAnimating()
+				bufferSpinnerAlphaView.isHidden = true
+			} else {
+				bufferSpinner.startAnimating()
+				bufferSpinnerAlphaView.isHidden = false
+			}
 		}
 	}
 }

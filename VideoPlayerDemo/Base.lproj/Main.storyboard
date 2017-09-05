@@ -60,19 +60,34 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fry-7J-jBM">
+                                <rect key="frame" x="318" y="585" width="45" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Jyw-8g-lGD">
+                                <rect key="frame" x="322" y="589" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fry-7J-jBM" firstAttribute="bottom" secondItem="Jyw-8g-lGD" secondAttribute="bottom" constant="4" id="0B8-g6-kKi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jyw-8g-lGD" secondAttribute="trailing" id="42I-wk-7aL"/>
+                            <constraint firstItem="fry-7J-jBM" firstAttribute="trailing" secondItem="Jyw-8g-lGD" secondAttribute="trailing" constant="4" id="AyP-cf-AkD"/>
+                            <constraint firstItem="fry-7J-jBM" firstAttribute="top" secondItem="Jyw-8g-lGD" secondAttribute="top" constant="-4" id="JyH-aJ-Qmx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P04-wy-0cM" secondAttribute="trailing" id="Ss4-5g-L4U"/>
                             <constraint firstItem="iBl-gQ-VcD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TeP-FN-jzP"/>
                             <constraint firstItem="iBl-gQ-VcD" firstAttribute="top" secondItem="P04-wy-0cM" secondAttribute="top" id="UuZ-h7-gUq"/>
                             <constraint firstAttribute="trailing" secondItem="iBl-gQ-VcD" secondAttribute="trailing" id="Uvg-Ko-dNA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P04-wy-0cM" secondAttribute="bottom" id="VyS-o1-jJh"/>
+                            <constraint firstItem="fry-7J-jBM" firstAttribute="leading" secondItem="Jyw-8g-lGD" secondAttribute="leading" constant="-4" id="f9W-In-Pfo"/>
+                            <constraint firstItem="P04-wy-0cM" firstAttribute="top" secondItem="Jyw-8g-lGD" secondAttribute="bottom" constant="8" id="kJF-Nm-pYu"/>
                             <constraint firstItem="iBl-gQ-VcD" firstAttribute="bottom" secondItem="P04-wy-0cM" secondAttribute="bottom" id="o5K-TI-GC4"/>
                             <constraint firstItem="P04-wy-0cM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sQi-81-KBm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bufferSpinner" destination="Jyw-8g-lGD" id="MLB-xJ-hKj"/>
+                        <outlet property="bufferSpinnerAlphaView" destination="fry-7J-jBM" id="EPU-Pe-lJE"/>
                         <outlet property="buttonStackView" destination="P04-wy-0cM" id="9uq-hV-nUg"/>
                         <outlet property="playButton" destination="dtI-xw-5Zm" id="pAh-CK-d9M"/>
                         <outlet property="seekSlider" destination="Prb-l7-eYI" id="oyJ-Su-MvH"/>
